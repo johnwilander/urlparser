@@ -1,0 +1,17 @@
+# Project specific files and directories
+temp/
+dist/
+.sass-cache/
+
+# IDEA specific files and directories
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# OS specific files and directories
+.DS_Store
+.DS_Store?
+
+# General
+*.zip
