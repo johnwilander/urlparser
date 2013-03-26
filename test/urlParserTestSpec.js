@@ -108,7 +108,28 @@ describe("Tests of urlparser", function () {
             });
 
 
-            it("should be able to parse a URL with scheme, double slash, address, path, query string, and fragment");
+            it("should be able to parse a URL with scheme, double slash, address, path, query string, and fragment", function () {
+                // given
+                var urlString = "http://1-liner.org/#!usage",
+                    url;
+
+                // when
+                url = urlParser.parse(urlString);
+
+                // then
+                expect(url).to.be.an('object');
+
+                expect(url.scheme).to.equal('http');
+                expect(url.doubleSlash).to.equal(true);
+                expect(url.username).to.equal('');
+                expect(url.password).to.equal('');
+                expect(url.address).to.equal('1-liner.org');
+                expect(url.port).to.equal('');
+                expect(url.path).to.equal('/');
+                expect(url.queryString).to.equal('');
+                expect(url.fragment).to.equal('!usage');
+
+            });
 
             it("should be able to parse a URL with scheme, double slash, address, path, and fragment", function () {
                 // given
