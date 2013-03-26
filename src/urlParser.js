@@ -89,20 +89,22 @@
             _extractQueryString = function (parsedSegments) {
                 var toExtractFrom = parsedSegments.rest,
                     queryString,
-                    indexOf;
+                    queryStartIndex,
+                    queryEndIndex;
 
-                indexOf = toExtractFrom.indexOf('#');
-                if (indexOf === -1) {
-                    queryString = toExtractFrom;
-                    parsedSegments.rest = '';
+                queryStartIndex = toExtractFrom.indexOf('?');
+                if (queryStartIndex === -1) {
+                    queryString = '';
                 } else {
-                    queryString = toExtractFrom.substring(0, indexOf);
-                    parsedSegments.rest = toExtractFrom.substring(indexOf);
-                }
-
-                // strip leading '?' char
-                if (queryString.length > 0) {
-                    queryString = queryString.substring(1);
+                    queryEndIndex = toExtractFrom.indexOf('#');
+                    if (queryEndIndex === -1) {
+                        queryString = toExtractFrom.substring(1); // strip leading '?'
+                        parsedSegments.rest = '';
+                    } else {
+                        // strip leading '?' and trailing fragment
+                        queryString = toExtractFrom.substring(1, queryEndIndex);
+                        parsedSegments.rest = toExtractFrom.substring(queryEndIndex);
+                    }
                 }
 
                 parsedSegments.queryString = queryString;
