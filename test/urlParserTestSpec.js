@@ -39,9 +39,9 @@ describe("Tests of urlparser", function () {
             expect(errorCaught).to.be(true);
         });
 
-        describe("Tests of absolute URLs with the ASCII character set", function () {
+        describe("Tests of absolute URLs with that all have scheme and none have credentials", function () {
 
-            it("should be able to parse a URL with scheme, double slash, and address", function () {
+            it("[x__x___] should be able to parse a URL with scheme, double slash, and address", function () {
                 // given
                 var urlString = "https://github.com",
                     url;
@@ -63,7 +63,7 @@ describe("Tests of urlparser", function () {
                 expect(url.fragment).to.equal('');
             });
 
-            it("should be able to parse a URL with scheme, double slash, address, and path", function () {
+            it("[x__xx__] should be able to parse a URL with scheme, double slash, address, and path", function () {
                 // given
                 var urlString = "https://github.com/johnwilander/urlparser/blob/master/src/Url.js",
                     url;
@@ -85,7 +85,11 @@ describe("Tests of urlparser", function () {
                 expect(url.fragment).to.equal('');
             });
 
-            it("should be able to parse a URL with scheme, double slash, address, path, and query string", function () {
+            it("[x__x_x_] should be able to parse a URL with scheme, double slash, address and query string");
+
+            it("[x__x__x] should be able to parse a URL with scheme, double slash, address and fragment");
+
+            it("[x__xxx_] should be able to parse a URL with scheme, double slash, address, path, and query string", function () {
                 // given
                 var urlString = "https://www.google.com/analytics/web/provision?et=&authuser=",
                     url;
@@ -107,8 +111,7 @@ describe("Tests of urlparser", function () {
                 expect(url.fragment).to.equal('');
             });
 
-
-            it("should be able to parse a URL with scheme, double slash, address, path, query string, and fragment", function () {
+            it("[x__xx_x] should be able to parse a URL with scheme, double slash, address, path, and fragment", function () {
                 // given
                 var urlString = "http://1-liner.org/#!usage",
                     url;
@@ -128,12 +131,13 @@ describe("Tests of urlparser", function () {
                 expect(url.path).to.equal('/');
                 expect(url.queryString).to.equal('');
                 expect(url.fragment).to.equal('!usage');
-
             });
 
-            it("should be able to parse a URL with scheme, double slash, address, path, and fragment", function () {
+            it("[x__x_xx] should be able to parse a URL with scheme, double slash, address, query string and fragment");
+
+            it("[x__xxxx] should be able to parse a URL with scheme, double slash, address, path, query string, and fragment", function () {
                 // given
-                var urlString = "http://1-liner.org#!usage",
+                var urlString = "http://1-liner.org/?x=1#!usage",
                     url;
 
                 // when
@@ -148,11 +152,11 @@ describe("Tests of urlparser", function () {
                 expect(url.password).to.equal('');
                 expect(url.address).to.equal('1-liner.org');
                 expect(url.port).to.equal('');
-                expect(url.path).to.equal('');
-                expect(url.queryString).to.equal('');
+                expect(url.path).to.equal('/');
+                expect(url.queryString).to.equal('x=1');
                 expect(url.fragment).to.equal('!usage');
-
             });
+
         });
 
     });
