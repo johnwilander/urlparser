@@ -55,9 +55,15 @@
                     toExtractFrom = parsedSegments.rest;
 
                 indexOf = _firstIndexOf(toExtractFrom, ['/', '?', '#']);
-                authority = toExtractFrom.substring(0, indexOf);
+                if (indexOf === -1) {
+                    authority = toExtractFrom;
+                    parsedSegments.rest = '';
+                } else {
+                    authority = toExtractFrom.substring(0, indexOf);
+                    parsedSegments.rest = toExtractFrom.substring(indexOf);
+                }
+
                 parsedSegments.address = authority;
-                parsedSegments.rest = toExtractFrom.substring(indexOf);
 
                 return parsedSegments;
             },

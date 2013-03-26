@@ -40,7 +40,28 @@ describe("Tests of urlparser", function () {
         });
 
         describe("Tests of absolute URLs with the ASCII character set", function () {
-            it("should be able to parse a URL with scheme, double slash, and address");
+
+            it("should be able to parse a URL with scheme, double slash, and address", function () {
+                // given
+                var urlString = "https://github.com",
+                    url;
+
+                // when
+                url = urlParser.parse(urlString);
+
+                // then
+                expect(url).to.be.an('object');
+
+                expect(url.scheme).to.equal('https');
+                expect(url.doubleSlash).to.equal(true);
+                expect(url.username).to.equal('');
+                expect(url.password).to.equal('');
+                expect(url.address).to.equal('github.com');
+                expect(url.port).to.equal('');
+                expect(url.path).to.equal('');
+                expect(url.queryString).to.equal('');
+                expect(url.fragment).to.equal('');
+            });
 
             it("should be able to parse a URL with scheme, double slash, address, and path", function () {
                 // given
@@ -62,7 +83,6 @@ describe("Tests of urlparser", function () {
                 expect(url.path).to.equal('/johnwilander/urlparser/blob/master/src/Url.js');
                 expect(url.queryString).to.equal('');
                 expect(url.fragment).to.equal('');
-
             });
 
             it("should be able to parse a URL with scheme, double slash, address, path, and query string");
