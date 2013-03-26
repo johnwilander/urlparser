@@ -69,13 +69,44 @@
             },
 
             _extractPath = function (parsedSegments) {
-                parsedSegments.path = parsedSegments.rest;
-                parsedSegments.rest = "";
+                var toExtractFrom = parsedSegments.rest,
+                    path,
+                    indexOf;
+
+                indexOf = _firstIndexOf(toExtractFrom, ['?', '#']);
+                if (indexOf === -1) {
+                    path = toExtractFrom;
+                    parsedSegments.rest = '';
+                } else {
+                    path = toExtractFrom.substring(0, indexOf);
+                    parsedSegments.rest = toExtractFrom.substring(indexOf);
+                }
+
+                parsedSegments.path = path;
                 return parsedSegments;
             },
 
-            _extractQueryString = function (segments) {
-                return segments;
+            _extractQueryString = function (parsedSegments) {
+                var toExtractFrom = parsedSegments.rest,
+                    queryString,
+                    indexOf;
+
+                indexOf = toExtractFrom.indexOf('#');
+                if (indexOf === -1) {
+                    queryString = toExtractFrom;
+                    parsedSegments.rest = '';
+                } else {
+                    queryString = toExtractFrom.substring(0, indexOf);
+                    parsedSegments.rest = toExtractFrom.substring(indexOf);
+                }
+
+                // strip leading '?' char
+                if (queryString.length > 0) {
+                    queryString = queryString.substring(1);
+                }
+
+                parsedSegments.queryString = queryString;
+                return parsedSegments;
             },
 
             _extractFragment = function (segments) {

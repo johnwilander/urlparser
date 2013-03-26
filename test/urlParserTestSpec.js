@@ -85,7 +85,29 @@ describe("Tests of urlparser", function () {
                 expect(url.fragment).to.equal('');
             });
 
-            it("should be able to parse a URL with scheme, double slash, address, path, and query string");
+            it("should be able to parse a URL with scheme, double slash, address, path, and query string", function () {
+                // given
+                var urlString = "https://www.google.com/analytics/web/provision?et=&authuser=",
+                    url;
+
+                // when
+                url = urlParser.parse(urlString);
+
+                // then
+                expect(url).to.be.an('object');
+
+                expect(url.scheme).to.equal('https');
+                expect(url.doubleSlash).to.equal(true);
+                expect(url.username).to.equal('');
+                expect(url.password).to.equal('');
+                expect(url.address).to.equal('www.google.com');
+                expect(url.port).to.equal('');
+                expect(url.path).to.equal('/analytics/web/provision');
+                expect(url.queryString).to.equal('et=&authuser=');
+                expect(url.fragment).to.equal('');
+            });
+
+
             it("should be able to parse a URL with scheme, double slash, address, path, query string, and fragment");
             it("should be able to parse a URL with scheme, double slash, address, path, and fragment");
         });

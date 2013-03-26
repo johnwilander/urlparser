@@ -13,8 +13,8 @@
                     address: 'example.com',
                     port: 8080,
                     path: '/test.html',
-                    queryString: '?param=value',
-                    fragment: '#my_fragment'
+                    queryString: 'param=value',
+                    fragment: 'my_fragment'
                 },
                 url;
 
