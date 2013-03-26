@@ -109,8 +109,22 @@
                 return parsedSegments;
             },
 
-            _extractFragment = function (segments) {
-                return segments;
+            _extractFragment = function (parsedSegments) {
+                var toExtractFrom = parsedSegments.rest,
+                    fragment,
+                    indexOf;
+
+                indexOf = toExtractFrom.indexOf('#');
+
+                if (indexOf === -1) {
+                    fragment = '';
+                } else {
+                    // strip the leading '#' character
+                    fragment = toExtractFrom.substring(indexOf + 1);
+                }
+
+                parsedSegments.fragment = fragment;
+                return parsedSegments;
             },
 
             _parse = function (urlString) {
