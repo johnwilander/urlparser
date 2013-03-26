@@ -36,15 +36,15 @@ describe("Tests of urlparser", function () {
                 // then
                 expect(url).to.be.an('object');
 
-                expect(url.scheme).to.be.equal('https');
-                expect(url.doubleSlash).to.be.equal(true);
-                expect(url.username).to.be.equal('');
-                expect(url.password).to.be.equal('');
-                expect(url.address).to.be.equal('github.com');
-                expect(url.port).to.be.equal('');
-                expect(url.path).to.be.equal('/johnwilander/urlparser/blob/master/src/Url.js');
-                expect(url.queryString).to.be.equal('');
-                expect(url.fragment).to.be.equal('');
+                expect(url.scheme).to.equal('https');
+                expect(url.doubleSlash).to.equal(true);
+                expect(url.username).to.equal('');
+                expect(url.password).to.equal('');
+                expect(url.address).to.equal('github.com');
+                expect(url.port).to.equal('');
+                expect(url.path).to.equal('/johnwilander/urlparser/blob/master/src/Url.js');
+                expect(url.queryString).to.equal('');
+                expect(url.fragment).to.equal('');
 
             });
 
