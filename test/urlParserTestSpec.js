@@ -5,6 +5,23 @@ describe("Tests of urlparser", function () {
                    "museum", "name", "net", "org", "post", "pro", "tel", "travel", "xxx"];
 
     describe("Tests of the parse() function", function () {
+
+        it("should throw an error for undefined URL strings", function () {
+            // given
+            var errorCaught = false,
+                url;
+
+            // when
+            try {
+                url = urlParser.parse(/* undefined */);
+            } catch (error) {
+                errorCaught = true;
+            }
+
+            //then
+            expect(errorCaught).to.be(true);
+        });
+
         it("should throw an error for empty URL strings", function () {
             // given
             var urlString = "",
