@@ -23,12 +23,16 @@ module.exports = function(grunt) {
                 src: 'dist/<%= pkg.name %>.js',
                 dest: 'dist/<%= pkg.name %>.min.js'
             }
+        },
+        clean: {
+            build: ['dist'],
+            project: ['components', 'node_modules']
         }
     });
 
-    // Load the plugin that provides the "concat" task.
+
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
-    // Load the plugin that provides the "uglify" task.
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     // Default task(s).
