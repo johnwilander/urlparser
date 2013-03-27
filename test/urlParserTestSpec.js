@@ -630,7 +630,7 @@ describe("Tests of urlparser", function () {
 
             it("[xxxx____] should be able to parse a URL with scheme, username, password, and address", function () {
                 // given
-                var urlString = "https://user.passwd@github.com",
+                var urlString = "https://user:passwd@github.com",
                     url;
 
                 // when
@@ -647,7 +647,7 @@ describe("Tests of urlparser", function () {
 
             it("[xxxxx___] should be able to parse a URL with scheme, username, password, address, and port", function () {
                 // given
-                var urlString = "http://user.passwd@example.com:8081",
+                var urlString = "http://user:passwd@example.com:8081",
                     url;
 
                 // when
@@ -665,7 +665,7 @@ describe("Tests of urlparser", function () {
 
             it("[xxxx_x__] should be able to parse a URL with scheme, username, password, address, and path", function () {
                 // given
-                var urlString = "https://user.passwd@github.com/johnwilander/urlparser/blob/master/src/Url.js",
+                var urlString = "https://user:passwd@github.com/johnwilander/urlparser/blob/master/src/Url.js",
                     url;
 
                 // when
@@ -683,7 +683,7 @@ describe("Tests of urlparser", function () {
 
             it("[xxxx__x_] should be able to parse a URL with scheme, username, password, address, and query string", function () {
                 // given
-                var urlString = "http://user.passwd@example.com?param=value",
+                var urlString = "http://user:passwd@example.com?param=value",
                     url;
 
                 // when
@@ -701,7 +701,7 @@ describe("Tests of urlparser", function () {
 
             it("[xxxx___x] should be able to parse a URL with scheme, username, password, address, and fragment", function () {
                 // given
-                var urlString = "http://user.passwd@1-liner.org#!usage",
+                var urlString = "http://user:passwd@1-liner.org#!usage",
                     url;
 
                 // when
@@ -719,7 +719,7 @@ describe("Tests of urlparser", function () {
 
             it("[xxxxxx__] should be able to parse a URL with scheme, username, password, address, port, and path", function () {
                 // given
-                var urlString = "http://user.passwd@example.com:81/test.html",
+                var urlString = "http://user:passwd@example.com:81/test.html",
                     url;
 
                 // when
@@ -738,7 +738,7 @@ describe("Tests of urlparser", function () {
 
             it("[xxxxx_x_] should be able to parse a URL with scheme, username, password, address, port, and query string", function () {
                 // given
-                var urlString = "http://user.passwd@example.com:81?param=value",
+                var urlString = "http://user:passwd@example.com:81?param=value",
                     url;
 
                 // when
@@ -757,7 +757,7 @@ describe("Tests of urlparser", function () {
 
             it("[xxxxx__x] should be able to parse a URL with scheme, username, password, address, port, and fragment", function () {
                 // given
-                var urlString = "http://user.passwd@example.com:80#the_fragment",
+                var urlString = "http://user:passwd@example.com:80#the_fragment",
                     url;
 
                 // when
@@ -777,7 +777,7 @@ describe("Tests of urlparser", function () {
 
             it("[xxxx_xx_] should be able to parse a URL with scheme, username, password, address, path, and query string", function () {
                 // given
-                var urlString = "https://user.passwd@www.google.com/analytics/web/provision?et=&authuser=",
+                var urlString = "https://user:passwd@www.google.com/analytics/web/provision?et=&authuser=",
                     url;
 
                 // when
@@ -796,7 +796,7 @@ describe("Tests of urlparser", function () {
 
             it("[xxxx_x_x] should be able to parse a URL with scheme, username, password, address, path, and fragment", function () {
                 // given
-                var urlString = "http://user.passwd@1-liner.org/#!usage",
+                var urlString = "http://user:passwd@1-liner.org/#!usage",
                     url;
 
                 // when
@@ -815,7 +815,7 @@ describe("Tests of urlparser", function () {
 
             it("[xxxx__xx] should be able to parse a URL with scheme, username, password, address, query string, and fragment", function () {
                 // given
-                var urlString = "http://user.passwd@example.com?param=value#the_fragment",
+                var urlString = "http://user:passwd@example.com?param=value#the_fragment",
                     url;
 
                 // when
@@ -834,7 +834,7 @@ describe("Tests of urlparser", function () {
 
             it("[xxxxxxx_] should be able to parse a URL with scheme, username, password, address, port, path, and query string", function () {
                 // given
-                var urlString = "http://user.passwd@example.com:80/test?param=value",
+                var urlString = "http://user:passwd@example.com:80/test?param=value",
                     url;
 
                 // when
@@ -854,7 +854,7 @@ describe("Tests of urlparser", function () {
 
             it("[xxxxxx_x] should be able to parse a URL with scheme, username, password, address, port, path, and fragment", function () {
                 // given
-                var urlString = "http://user.passwd@example.com:80/test#the_fragment",
+                var urlString = "http://user:passwd@example.com:80/test#the_fragment",
                     url;
 
                 // when
@@ -874,7 +874,7 @@ describe("Tests of urlparser", function () {
 
             it("[xxxxx_xx] should be able to parse a URL with scheme, username, password, address, port, query string and fragment", function () {
                 // given
-                var urlString = "http://user.passwd@example.com:80?param=value#the_fragment",
+                var urlString = "http://user:passwd@example.com:80?param=value#the_fragment",
                     url;
 
                 // when
@@ -894,7 +894,7 @@ describe("Tests of urlparser", function () {
 
             it("[xxxx_xxx] should be able to parse a URL with scheme, username, password, address, path, query string, and fragment", function () {
                 // given
-                var urlString = "http://user.passwd@1-liner.org/?x=1#!usage",
+                var urlString = "http://user:passwd@1-liner.org/?x=1#!usage",
                     url;
 
                 // when
@@ -914,7 +914,7 @@ describe("Tests of urlparser", function () {
 
             it("[xxxxxxxx] should be able to parse a URL with scheme, username, password, address, port, path, query string, and fragment", function () {
                 // given
-                var urlString = "http://user.passwd@example.com:80/test?param=value#the_fragment",
+                var urlString = "http://user:passwd@example.com:80/test?param=value#the_fragment",
                     url;
 
                 // when

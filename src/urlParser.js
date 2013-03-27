@@ -83,7 +83,7 @@
                     credentials = authority.substring(0, credentialEndIndex);
                     address = authority.substring(credentialEndIndex + 1);
 
-                    usernameEndIndex = credentials.indexOf('.');
+                    usernameEndIndex = credentials.indexOf(':');
                     if (usernameEndIndex === -1) { // no password
                         username = credentials;
                         password = '';
