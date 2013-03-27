@@ -16,7 +16,10 @@
 
 <script src="../components/expect/expect.js"></script>
 <script src="../components/mocha/mocha.js"></script>
-<script>mocha.setup('bdd')</script>
+<script>mocha.setup({
+    ui: 'bdd',
+    bail: false
+})</script>
 <script src="../src/urlParser.js"></script>
 <script src="../src/Url.js"></script>
 <script src="UrlTestSpec.js"></script>
