@@ -4,7 +4,6 @@ Things to handle in the short run
 
 
 * add support for parsing credentials (username and password)
-* add support for parsing port
 * test quirks (multiple '?' and '#' etc)
 * add support for relative URLs
 * test URL escape values

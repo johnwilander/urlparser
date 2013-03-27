@@ -51,19 +51,33 @@
             },
 
             _extractAuthority = function (parsedSegments) {
-                var authority, indexOf,
+                var authority,
+                    address,
+                    port,
+                    authorityEndIndex,
+                    addressEndIndex,
                     toExtractFrom = parsedSegments.rest;
 
-                indexOf = _firstIndexOf(toExtractFrom, ['/', '?', '#']);
-                if (indexOf === -1) {
+                authorityEndIndex = _firstIndexOf(toExtractFrom, ['/', '?', '#']);
+                if (authorityEndIndex === -1) {
                     authority = toExtractFrom;
                     parsedSegments.rest = '';
                 } else {
-                    authority = toExtractFrom.substring(0, indexOf);
-                    parsedSegments.rest = toExtractFrom.substring(indexOf);
+                    authority = toExtractFrom.substring(0, authorityEndIndex);
+                    parsedSegments.rest = toExtractFrom.substring(authorityEndIndex);
                 }
 
-                parsedSegments.address = authority;
+                addressEndIndex = authority.indexOf(':');
+                if (addressEndIndex === -1) { // no port
+                    address = authority;
+                    port = '';
+                } else { // port
+                    address = authority.substring(0, addressEndIndex);
+                    port = authority.substring(addressEndIndex + 1);
+                }
+
+                parsedSegments.address = address;
+                parsedSegments.port = port;
 
                 return parsedSegments;
             },
