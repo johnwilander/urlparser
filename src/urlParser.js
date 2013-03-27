@@ -53,9 +53,15 @@
             _extractAuthority = function (parsedSegments) {
                 var authority,
                     address,
+                    username,
+                    password,
+                    credentials,
+                    hostname,
+
                     port,
+                    credentialEndIndex,
                     authorityEndIndex,
-                    addressEndIndex,
+                    hostnameEndIndex,
                     toExtractFrom = parsedSegments.rest;
 
                 authorityEndIndex = _firstIndexOf(toExtractFrom, ['/', '?', '#']);
@@ -67,16 +73,31 @@
                     parsedSegments.rest = toExtractFrom.substring(authorityEndIndex);
                 }
 
-                addressEndIndex = authority.indexOf(':');
-                if (addressEndIndex === -1) { // no port
+                credentialEndIndex = authority.indexOf('@');
+                if (credentialEndIndex === -1) { // no credentials
+                    username = '';
+                    password = '';
                     address = authority;
-                    port = '';
-                } else { // port
-                    address = authority.substring(0, addressEndIndex);
-                    port = authority.substring(addressEndIndex + 1);
+                } else {
+                    credentials = authority.substring(0, credentialEndIndex);
+                    username = credentials;
+                    password = '';
+                    address = authority.substring(credentialEndIndex + 1);
                 }
 
-                parsedSegments.address = address;
+                // extract hostname and port from the address
+                hostnameEndIndex = address.indexOf(':');
+                if (hostnameEndIndex === -1) { // no port
+                    hostname = address;
+                    port = '';
+                } else { // port
+                    hostname = address.substring(0, hostnameEndIndex);
+                    port = address.substring(hostnameEndIndex + 1);
+                }
+
+                parsedSegments.username = username;
+                parsedSegments.password = password;
+                parsedSegments.address = hostname;
                 parsedSegments.port = port;
 
                 return parsedSegments;
