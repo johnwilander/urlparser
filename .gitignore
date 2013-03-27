@@ -1,5 +1,6 @@
 # Project specific files and directories
 components/
+node_modules/
 temp/
 dist/
 .sass-cache/
