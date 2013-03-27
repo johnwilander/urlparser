@@ -3,7 +3,6 @@ TODO
 Things to handle in the short run
 
 
-* add support for parsing credentials (username and password)
 * test quirks (multiple '?' and '#' etc)
 * add support for relative URLs
 * Maybe rename url.address to url.hostname? Address should probably be hostname:port?

@@ -60,6 +60,7 @@
 
                     port,
                     credentialEndIndex,
+                    usernameEndIndex,
                     authorityEndIndex,
                     hostnameEndIndex,
                     toExtractFrom = parsedSegments.rest;
@@ -80,9 +81,16 @@
                     address = authority;
                 } else {
                     credentials = authority.substring(0, credentialEndIndex);
-                    username = credentials;
-                    password = '';
                     address = authority.substring(credentialEndIndex + 1);
+
+                    usernameEndIndex = credentials.indexOf('.');
+                    if (usernameEndIndex === -1) { // no password
+                        username = credentials;
+                        password = '';
+                    } else { // password
+                        username = credentials.substring(0, usernameEndIndex);
+                        password = credentials.substring(usernameEndIndex + 1);
+                    }
                 }
 
                 // extract hostname and port from the address

@@ -331,7 +331,7 @@ describe("Tests of urlparser", function () {
 
         });
 
-        describe("Tests of absolute URLs with that all have scheme, credentials, and address", function () {
+        describe("Tests of absolute URLs with that all have scheme, username, and address", function () {
 
             it("[xx_x____] should be able to parse a URL with scheme, username, and address", function () {
                 // given
@@ -621,7 +621,318 @@ describe("Tests of urlparser", function () {
                     fragment: 'the_fragment'
                 });
             });
+
+
+
         });
 
+        describe("Tests of absolute URLs with that all have scheme, username, password, and address", function () {
+
+            it("[xxxx____] should be able to parse a URL with scheme, username, password, and address", function () {
+                // given
+                var urlString = "https://user.passwd@github.com",
+                    url;
+
+                // when
+                url = urlParser.parse(urlString);
+
+                // then
+                assertUrl(url, {
+                    scheme: 'https',
+                    username: 'user',
+                    password: 'passwd',
+                    address: 'github.com'
+                });
+            });
+
+            it("[xxxxx___] should be able to parse a URL with scheme, username, password, address, and port", function () {
+                // given
+                var urlString = "http://user.passwd@example.com:8081",
+                    url;
+
+                // when
+                url = urlParser.parse(urlString);
+
+                // then
+                assertUrl(url, {
+                    scheme: 'http',
+                    username: 'user',
+                    password: 'passwd',
+                    address: 'example.com',
+                    port: '8081'
+                });
+            });
+
+            it("[xxxx_x__] should be able to parse a URL with scheme, username, password, address, and path", function () {
+                // given
+                var urlString = "https://user.passwd@github.com/johnwilander/urlparser/blob/master/src/Url.js",
+                    url;
+
+                // when
+                url = urlParser.parse(urlString);
+
+                // then
+                assertUrl(url, {
+                    scheme: 'https',
+                    username: 'user',
+                    password: 'passwd',
+                    address: 'github.com',
+                    path: '/johnwilander/urlparser/blob/master/src/Url.js'
+                });
+            });
+
+            it("[xxxx__x_] should be able to parse a URL with scheme, username, password, address, and query string", function () {
+                // given
+                var urlString = "http://user.passwd@example.com?param=value",
+                    url;
+
+                // when
+                url = urlParser.parse(urlString);
+
+                // then
+                assertUrl(url, {
+                    scheme: 'http',
+                    username: 'user',
+                    password: 'passwd',
+                    address: 'example.com',
+                    queryString: 'param=value'
+                });
+            });
+
+            it("[xxxx___x] should be able to parse a URL with scheme, username, password, address, and fragment", function () {
+                // given
+                var urlString = "http://user.passwd@1-liner.org#!usage",
+                    url;
+
+                // when
+                url = urlParser.parse(urlString);
+
+                // then
+                assertUrl(url, {
+                    scheme: 'http',
+                    username: 'user',
+                    password: 'passwd',
+                    address: '1-liner.org',
+                    fragment: '!usage'
+                });
+            });
+
+            it("[xxxxxx__] should be able to parse a URL with scheme, username, password, address, port, and path", function () {
+                // given
+                var urlString = "http://user.passwd@example.com:81/test.html",
+                    url;
+
+                // when
+                url = urlParser.parse(urlString);
+
+                // then
+                assertUrl(url, {
+                    scheme: 'http',
+                    username: 'user',
+                    password: 'passwd',
+                    address: 'example.com',
+                    port: '81',
+                    path: '/test.html'
+                });
+            });
+
+            it("[xxxxx_x_] should be able to parse a URL with scheme, username, password, address, port, and query string", function () {
+                // given
+                var urlString = "http://user.passwd@example.com:81?param=value",
+                    url;
+
+                // when
+                url = urlParser.parse(urlString);
+
+                // then
+                assertUrl(url, {
+                    scheme: 'http',
+                    username: 'user',
+                    password: 'passwd',
+                    address: 'example.com',
+                    port: '81',
+                    queryString: 'param=value'
+                });
+            });
+
+            it("[xxxxx__x] should be able to parse a URL with scheme, username, password, address, port, and fragment", function () {
+                // given
+                var urlString = "http://user.passwd@example.com:80#the_fragment",
+                    url;
+
+                // when
+                url = urlParser.parse(urlString);
+
+                // then
+                assertUrl(url, {
+                    scheme: 'http',
+                    username: 'user',
+                    password: 'passwd',
+                    address: 'example.com',
+                    port: '80',
+                    fragment: 'the_fragment'
+                });
+            });
+
+
+            it("[xxxx_xx_] should be able to parse a URL with scheme, username, password, address, path, and query string", function () {
+                // given
+                var urlString = "https://user.passwd@www.google.com/analytics/web/provision?et=&authuser=",
+                    url;
+
+                // when
+                url = urlParser.parse(urlString);
+
+                // then
+                assertUrl(url, {
+                    scheme: 'https',
+                    username: 'user',
+                    password: 'passwd',
+                    address: 'www.google.com',
+                    path: '/analytics/web/provision',
+                    queryString: 'et=&authuser='
+                });
+            });
+
+            it("[xxxx_x_x] should be able to parse a URL with scheme, username, password, address, path, and fragment", function () {
+                // given
+                var urlString = "http://user.passwd@1-liner.org/#!usage",
+                    url;
+
+                // when
+                url = urlParser.parse(urlString);
+
+                // then
+                assertUrl(url, {
+                    scheme: 'http',
+                    username: 'user',
+                    password: 'passwd',
+                    address: '1-liner.org',
+                    path: '/',
+                    fragment: '!usage'
+                });
+            });
+
+            it("[xxxx__xx] should be able to parse a URL with scheme, username, password, address, query string, and fragment", function () {
+                // given
+                var urlString = "http://user.passwd@example.com?param=value#the_fragment",
+                    url;
+
+                // when
+                url = urlParser.parse(urlString);
+
+                // then
+                assertUrl(url, {
+                    scheme: 'http',
+                    username: 'user',
+                    password: 'passwd',
+                    address: 'example.com',
+                    queryString: 'param=value',
+                    fragment: 'the_fragment'
+                });
+            });
+
+            it("[xxxxxxx_] should be able to parse a URL with scheme, username, password, address, port, path, and query string", function () {
+                // given
+                var urlString = "http://user.passwd@example.com:80/test?param=value",
+                    url;
+
+                // when
+                url = urlParser.parse(urlString);
+
+                // then
+                assertUrl(url, {
+                    scheme: 'http',
+                    username: 'user',
+                    password: 'passwd',
+                    address: 'example.com',
+                    port: '80',
+                    path: '/test',
+                    queryString: 'param=value'
+                });
+            });
+
+            it("[xxxxxx_x] should be able to parse a URL with scheme, username, password, address, port, path, and fragment", function () {
+                // given
+                var urlString = "http://user.passwd@example.com:80/test#the_fragment",
+                    url;
+
+                // when
+                url = urlParser.parse(urlString);
+
+                // then
+                assertUrl(url, {
+                    scheme: 'http',
+                    username: 'user',
+                    password: 'passwd',
+                    address: 'example.com',
+                    port: '80',
+                    path: '/test',
+                    fragment: 'the_fragment'
+                });
+            });
+
+            it("[xxxxx_xx] should be able to parse a URL with scheme, username, password, address, port, query string and fragment", function () {
+                // given
+                var urlString = "http://user.passwd@example.com:80?param=value#the_fragment",
+                    url;
+
+                // when
+                url = urlParser.parse(urlString);
+
+                // then
+                assertUrl(url, {
+                    scheme: 'http',
+                    username: 'user',
+                    password: 'passwd',
+                    address: 'example.com',
+                    port: '80',
+                    queryString: 'param=value',
+                    fragment: 'the_fragment'
+                });
+            });
+
+            it("[xxxx_xxx] should be able to parse a URL with scheme, username, password, address, path, query string, and fragment", function () {
+                // given
+                var urlString = "http://user.passwd@1-liner.org/?x=1#!usage",
+                    url;
+
+                // when
+                url = urlParser.parse(urlString);
+
+                // then
+                assertUrl(url, {
+                    scheme: 'http',
+                    username: 'user',
+                    password: 'passwd',
+                    address: '1-liner.org',
+                    path: '/',
+                    queryString: 'x=1',
+                    fragment: '!usage'
+                });
+            });
+
+            it("[xxxxxxxx] should be able to parse a URL with scheme, username, password, address, port, path, query string, and fragment", function () {
+                // given
+                var urlString = "http://user.passwd@example.com:80/test?param=value#the_fragment",
+                    url;
+
+                // when
+                url = urlParser.parse(urlString);
+
+                // then
+                assertUrl(url, {
+                    scheme: 'http',
+                    username: 'user',
+                    password: 'passwd',
+                    address: 'example.com',
+                    port: '80',
+                    path: '/test',
+                    queryString: 'param=value',
+                    fragment: 'the_fragment'
+                });
+            });
+
+        });
     });
 });
