@@ -25,7 +25,11 @@
 <script src="UrlTestSpec.js"></script>
 <script src="urlParserTestSpec.js"></script>
 <script>
-    mocha.run();
+    // If tests run in a real browser
+    // Can alternatively do a check on window.PHANTOMJS
+    if (navigator.userAgent.indexOf('PhantomJS') < 0) {
+        mocha.run();
+    }
 </script>
 </body>
 </html>

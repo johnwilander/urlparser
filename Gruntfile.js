@@ -27,6 +27,12 @@ module.exports = function(grunt) {
         clean: {
             build: ['dist'],
             project: ['components', 'node_modules']
+        },
+        mocha: {
+            index: ['test/*.html'],
+            options: {
+                run: true
+            }
         }
     });
 
@@ -34,8 +40,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-mocha');
 
-    // Default task(s).
-    grunt.registerTask('default', ['concat', 'uglify']);
-
+    grunt.registerTask('test', ['mocha']);
+    grunt.registerTask('default', ['concat', 'uglify', 'test']);
 };
